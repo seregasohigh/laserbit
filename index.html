@@ -197,9 +197,10 @@
     <p>Телефон: +7 (977) 874-09-53 | Email: </p>
   </footer>
 
+  <!-- JavaScript -->
   <script>
     document.getElementById('orderForm').addEventListener('submit', function(e) {
-      e.preventDefault();
+      // e.preventDefault(); ← теперь НЕ блокируем отправку
       alert("Спасибо! Мы получили ваш запрос и свяжемся с вами в ближайшее время.");
       this.reset();
     });
