@@ -71,58 +71,6 @@
       color: #2c3e50;
     }
 
-    form {
-      background: #ecf0f1;
-      padding: 20px;
-      border-radius: 10px;
-      max-width: 600px;
-      margin: auto;
-    }
-
-    form label {
-      display: block;
-      margin-bottom: 15px;
-    }
-
-    form input,
-    form textarea {
-      width: 100%;
-      padding: 10px;
-      border: none;
-      border-radius: 5px;
-      font-size: 1rem;
-    }
-
-    form button {
-      background: #27ae60;
-      color: white;
-      cursor: pointer;
-      transition: 0.3s;
-      width: 100%;
-      padding: 10px;
-      border: none;
-      border-radius: 5px;
-      font-size: 1rem;
-    }
-
-    form button:hover {
-      background: #219150;
-    }
-
-    footer {
-      background: #2c3e50;
-      color: white;
-      text-align: center;
-      padding: 20px;
-      margin-top: 40px;
-    }
-
-    footer a {
-      color: #27ae60;
-      text-decoration: none;
-    }
-
-    /* Галерея */
     .gallery {
       position: relative;
       overflow: hidden;
@@ -132,6 +80,7 @@
       display: flex;
       transition: transform 0.5s ease;
       gap: 10px;
+      width: calc(25% - 10px); /* Ширина одного фото */
     }
 
     .gallery-item {
@@ -235,6 +184,17 @@
   <h2 style="text-align:center; margin-bottom: 30px;">Примеры работ</h2>
   <div class="gallery">
     <div class="gallery-container" id="galleryContainer">
+      <!-- Оригинальные фото -->
+      <div class="gallery-item"><img src="images/grav1.jpg" alt="Сувениры" data-fullscreen-src="images/grav1.jpg"></div>
+      <div class="gallery-item"><img src="images/grav2.jpg" alt="Таблички для дома или бани" data-fullscreen-src="images/grav2.jpg"></div>
+      <div class="gallery-item"><img src="images/grav3.jpg" alt="Медали" data-fullscreen-src="images/grav3.jpg"></div>
+      <div class="gallery-item"><img src="images/grav4.jpg" alt="Подставки" data-fullscreen-src="images/grav4.jpg"></div>
+      <div class="gallery-item"><img src="images/grav5.jpg" alt="Лазерная гравировка" data-fullscreen-src="images/grav5.jpg"></div>
+      <div class="gallery-item"><img src="images/grav6.jpg" alt="Подставки из сруба" data-fullscreen-src="images/grav6.jpg"></div>
+      <div class="gallery-item"><img src="images/grav7.jpg" alt="Грамоты и дипломы" data-fullscreen-src="images/grav7.jpg"></div>
+      <div class="gallery-item"><img src="images/grav8.jpg" alt="Лазерная гравировка" data-fullscreen-src="images/grav8.jpg"></div>
+
+      <!-- Дубликаты фото -->
       <div class="gallery-item"><img src="images/grav1.jpg" alt="Сувениры" data-fullscreen-src="images/grav1.jpg"></div>
       <div class="gallery-item"><img src="images/grav2.jpg" alt="Таблички для дома или бани" data-fullscreen-src="images/grav2.jpg"></div>
       <div class="gallery-item"><img src="images/grav3.jpg" alt="Медали" data-fullscreen-src="images/grav3.jpg"></div>
@@ -293,8 +253,9 @@
 
   function startAutoSlide() {
     setInterval(() => {
-      currentIndex = (currentIndex + 1) % galleryItems.length;
-      galleryContainer.style.transform = `translateX(-${currentIndex * 25}%)`;
+      currentIndex = (currentIndex + 1) % galleryItems.length; // Циклическое прокручивание
+      const itemWidth = galleryItems[0].offsetWidth; // Ширина одного элемента
+      galleryContainer.style.transform = `translateX(-${currentIndex * itemWidth}px)`; // Прокручиваем по одному фото
     }, 5000); // Каждые 5 секунд
   }
 
