@@ -311,30 +311,38 @@
 
 <!-- JavaScript -->
 <script>
-  // Автоматическое пролистывание галереи
-  let currentIndex = 0;
-  const galleryContainer = document.getElementById("galleryContainer");
-  const galleryItems = document.querySelectorAll(".gallery-item");
+  window.addEventListener('DOMContentLoaded', () => {
+    // Автоматическое пролистывание галереи
+    let currentIndex = 0;
+    const galleryContainer = document.getElementById("galleryContainer");
+    const galleryItems = document.querySelectorAll(".gallery-item");
 
-  function startAutoSlide() {
-    setInterval(() => {
-      currentIndex = (currentIndex + 1) % galleryItems.length;
-      const itemWidth = galleryItems[0].offsetWidth;
-      galleryContainer.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
-    }, 5000);
-  }
+    if (!galleryContainer || !galleryItems.length) {
+      console.error("Ошибка: Галерея не найдена");
+      return;
+    }
 
-  startAutoSlide();
+    function startAutoSlide() {
+      setInterval(() => {
+        currentIndex = (currentIndex + 1) % galleryItems.length; // Циклическое прокручивание
+        const itemWidth = galleryItems[0].offsetWidth; // Ширина одного элемента
+        galleryContainer.style.transform = `translateX(-${currentIndex * itemWidth}px)`; // Прокручиваем по одному фото
+      }, 5000); // Каждые 5 секунд
+    }
 
-  // Открытие модального окна
-  const modal = document.getElementById("fullscreen-modal");
-  const modalImage = document.getElementById("fullscreen-image");
-  const prevBtn = document.getElementById("prev-image");
-  const nextBtn = document.getElementById("next-image");
+    startAutoSlide();
 
-  if (!modal || !modalImage || !prevBtn || !nextBtn) {
-    console.error("Ошибка: Не найден один из элементов модального окна");
-  } else {
+    // Открытие модального окна
+    const modal = document.getElementById("fullscreen-modal");
+    const modalImage = document.getElementById("fullscreen-image");
+    const prevBtn = document.getElementById("prev-image");
+    const nextBtn = document.getElementById("next-image");
+
+    if (!modal || !modalImage || !prevBtn || !nextBtn) {
+      console.error("Ошибка: Не найден один из элементов модального окна");
+      return;
+    }
+
     document.querySelectorAll(".gallery-item img").forEach(img => {
       img.addEventListener("click", () => {
         modal.style.display = "block";
@@ -383,7 +391,7 @@
 
     // И запускаем изначально
     startModalAutoSlide();
-  }
+  });
 </script>
 
 </body>
