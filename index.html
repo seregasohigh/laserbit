@@ -122,87 +122,86 @@
     text-decoration: none;
   }
 
-  /* Галерея */
-  .gallery {
-    position: relative;
-    overflow: hidden;
-  }
+/* Галерея */
+.gallery {
+  position: relative;
+  overflow: hidden;
+}
 
-  .gallery-container {
-    display: flex;
-    transition: transform 0.5s ease;
-    gap: 10px;
-    width: calc(25% - 10px); /* Ширина одного фото */
-  }
+.gallery-container {
+  display: flex;
+  transition: transform 0.5s ease;
+  gap: 10px;
+  width: calc(33.33% - 10px); /* Теперь 3 фото в ряд */
+}
 
-  .gallery-item {
-    width: calc(25% - 10px); /* 4 фото в ряд */
-    height: auto;
-    padding: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    cursor: pointer;
-    overflow: hidden;
-  }
+.gallery-item {
+  width: calc(33.33% - 10px); /* 3 фото в ряд */
+  min-height: 200px; /* Минимальная высота */
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  overflow: hidden;
+}
 
-  .gallery-item img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-  }
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
 
-  /* Модальное окно */
-  .modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
-    z-index: 9999;
-  }
+/* Модальное окно */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 9999;
+}
 
-  .modal-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    overflow: hidden;
-    max-width: 90%;
-    max-height: 90%;
-  }
+.modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+  max-width: 90%;
+  max-height: 90%;
+}
 
-  .modal-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(255, 255, 255, 0.8);
-    color: #333;
-    font-size: 24px;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    z-index: 1000;
-  }
+.modal-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #333;
+  font-size: 24px;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  z-index: 1000;
+}
 
-  #prev-image {
-    left: 10px;
-  }
+#prev-image {
+  left: 10px;
+}
 
-  #next-image {
-    right: 10px;
-  }
+#next-image {
+  right: 10px;
+}
 
-  #fullscreen-image {
-    max-width: 100%;
-    max-height: 80vh;
-    display: block;
-    margin: auto;
-  }
-</style>
+#fullscreen-image {
+  max-width: 100%;
+  max-height: 80vh;
+  display: block;
+  margin: auto;
+}</style>
 </head>
 <body>
 
@@ -288,27 +287,27 @@
 
 <!-- JavaScript -->
 <script>
-  // Автоматическое пролистывание галереи
-  let currentIndex = 0;
-  const galleryContainer = document.getElementById("galleryContainer");
-  const galleryItems = document.querySelectorAll(".gallery-item");
+// Автоматическое пролистывание галереи
+let currentIndex = 0;
+const galleryContainer = document.getElementById("galleryContainer");
+const galleryItems = document.querySelectorAll(".gallery-item");
 
-  function startAutoSlide() {
-    setInterval(() => {
-      currentIndex = (currentIndex + 1) % galleryItems.length; // Циклическое прокручивание
-      const itemWidth = galleryItems[0].offsetWidth; // Ширина одного элемента
-      galleryContainer.style.transform = `translateX(-${currentIndex * itemWidth}px)`; // Прокручиваем по одному фото
-    }, 5000); // Каждые 5 секунд
-  }
+function startAutoSlide() {
+  setInterval(() => {
+    currentIndex = (currentIndex + 1) % galleryItems.length; // Циклическое прокручивание
+    const itemWidth = galleryItems[0].offsetWidth; // Ширина одного элемента
+    galleryContainer.style.transform = `translateX(-${currentIndex * itemWidth}px)`; // Прокручиваем по одному фото
+  }, 5000); // Каждые 5 секунд
+}
 
-  startAutoSlide();
+startAutoSlide();
+// Открытие модального окна
+const modal = document.getElementById("fullscreen-modal");
+const modalImage = document.getElementById("fullscreen-image");
 
-  // Открытие модального окна
-  const modal = document.getElementById("fullscreen-modal");
-  const modalImage = document.getElementById("fullscreen-image");
-  const prevBtn = document.getElementById("prev-image");
-  const nextBtn = document.getElementById("next-image");
-
+if (!modal || !modalImage) {
+  console.error("Ошибка: Не найден один из элементов модального окна");
+} else {
   document.querySelectorAll(".gallery-item img").forEach(img => {
     img.addEventListener("click", () => {
       modal.style.display = "block";
@@ -322,6 +321,7 @@
       modal.style.display = "none";
     }
   });
+}
 
   // Переключение фото в модальном окне
   let currentModalIndex = 0;
