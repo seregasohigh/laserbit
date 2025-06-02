@@ -198,13 +198,17 @@
   </footer>
 
   <!-- JavaScript -->
-  <script>
-    document.getElementById('orderForm').addEventListener('submit', function(e) {
-      // e.preventDefault(); ← теперь НЕ блокируем отправку
-      alert("Спасибо! Мы получили ваш запрос и свяжемся с вами в ближайшее время.");
-      this.reset();
-    });
-  </script>
+<script>
+  document.getElementById('orderForm').addEventListener('submit', function(e) {
+    // Показываем сообщение
+    alert("Спасибо! Мы получили ваш запрос и свяжемся с вами в ближайшее время.");
+    
+    // Сбрасываем форму
+    this.reset();
+    
+    // Не блокируем отправку — форма будет отправлена на Formspree
+  });
+</script>
 
 </body>
 </html>
