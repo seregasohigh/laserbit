@@ -71,23 +71,6 @@
       color: #2c3e50;
     }
 
-    .gallery {
-      position: relative;
-      overflow: hidden;
-    }
-
-    .gallery-container {
-      display: flex;
-      transition: transform 0.5s ease;
-    }
-
-    .gallery-item img {
-      width: 100%;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-      cursor: pointer;
-    }
-
     form {
       background: #ecf0f1;
       padding: 20px;
@@ -137,6 +120,33 @@
     footer a {
       color: #27ae60;
       text-decoration: none;
+    }
+
+    /* Галерея */
+    .gallery {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gallery-container {
+      display: flex;
+      transition: transform 0.5s ease;
+      gap: 10px;
+    }
+
+    .gallery-item {
+      width: calc(25% - 10px); /* 4 фото в ряд */
+      height: auto;
+      padding: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
     }
 
     /* Модальное окно */
@@ -284,41 +294,66 @@
   function startAutoSlide() {
     setInterval(() => {
       currentIndex = (currentIndex + 1) % galleryItems.length;
-      galleryContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
+      galleryContainer.style.transform = `translateX(-${currentIndex * 25}%)`;
     }, 5000); // Каждые 5 секунд
   }
 
   startAutoSlide();
 
   // Открытие модального окна
+  const modal = document.getElementById("fullscreen-modal");
+  const modalImage = document.getElementById("fullscreen-image");
+  const prevBtn = document.getElementById("prev-image");
+  const nextBtn = document.getElementById("next-image");
+
   document.querySelectorAll(".gallery-item img").forEach(img => {
     img.addEventListener("click", () => {
-      const modal = document.getElementById("fullscreen-modal");
-      const modalImage = document.getElementById("fullscreen-image");
       modal.style.display = "block";
       modalImage.src = img.getAttribute("data-fullscreen-src");
     });
   });
 
-  // Закрытие при клике вне изображения
-  document.getElementById("fullscreen-modal").addEventListener("click", function(e) {
-    if (e.target === e.currentTarget) {
-      e.currentTarget.style.display = "none";
+  // Закрытие модального окна
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      modal.style.display = "none";
     }
   });
 
-  // Переключение стрелками в модальном окне
+  // Переключение фото в модальном окне
   let currentModalIndex = 0;
 
-  document.getElementById("next-image").addEventListener("click", () => {
+  nextBtn.addEventListener("click", () => {
     currentModalIndex = (currentModalIndex + 1) % galleryItems.length;
-    document.getElementById("fullscreen-image").src = galleryItems[currentModalIndex].querySelector("img").getAttribute("data-fullscreen-src");
+    modalImage.src = galleryItems[currentModalIndex].querySelector("img").getAttribute("data-fullscreen-src");
   });
 
-  document.getElementById("prev-image").addEventListener("click", () => {
+  prevBtn.addEventListener("click", () => {
     currentModalIndex = (currentModalIndex - 1 + galleryItems.length) % galleryItems.length;
-    document.getElementById("fullscreen-image").src = galleryItems[currentModalIndex].querySelector("img").getAttribute("data-fullscreen-src");
+    modalImage.src = galleryItems[currentModalIndex].querySelector("img").getAttribute("data-fullscreen-src");
   });
+
+  // Бесконечное пролистывание в модальном окне
+  let modalAutoSlide = null;
+
+  function startModalAutoSlide() {
+    modalAutoSlide = setInterval(() => {
+      currentModalIndex = (currentModalIndex + 1) % galleryItems.length;
+      modalImage.src = galleryItems[currentModalIndex].querySelector("img").getAttribute("data-fullscreen-src");
+    }, 5000);
+  }
+
+  // Останавливаем автопрокрутку при наведении
+  modal.addEventListener("mouseenter", () => {
+    clearInterval(modalAutoSlide);
+  });
+
+  modal.addEventListener("mouseleave", () => {
+    startModalAutoSlide();
+  });
+
+  // И запускаем изначально
+  startModalAutoSlide();
 </script>
 
 </body>
