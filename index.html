@@ -122,106 +122,110 @@
     text-decoration: none;
   }
 
-/* Галерея */
-.gallery {
-  position: relative;
-  overflow: hidden;
-}
+  /* Галерея */
+  .gallery {
+    position: relative;
+    overflow: hidden;
+  }
 
-.gallery-container {
-  display: flex;
-  transition: transform 0.5s ease;
-  gap: 10px;
-  width: calc(25% - 10px); /* Ширина одного фото */
-}
-
-.gallery-item {
-  width: calc(25% - 10px); /* 4 фото в ряд */
-  height: auto;
-  padding: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  cursor: pointer;
-  overflow: hidden;
-}
-
-.gallery-item img {
-  width: 100%;
-  height: auto;
-  border-radius: 10px;
-}
-
-/* Медиазапросы для мобильных устройств */
-@media (max-width: 768px) {
   .gallery-container {
-    width: calc(50% - 10px); /* 2 фото в ряд */
+    display: flex;
+    transition: transform 0.5s ease;
+    gap: 10px;
+    width: calc(25% - 10px); /* 4 фото в ряд */
   }
 
   .gallery-item {
-    width: calc(50% - 10px); /* 2 фото в ряд */
+    width: calc(25% - 10px); /* 4 фото в ряд */
+    min-height: 320px; /* Высота под фото 1280px (ширина / 4) */
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    overflow: hidden;
   }
-}
 
-@media (max-width: 480px) {
-  .gallery-container {
-    width: 100%; /* 1 фото в ряд */
+  .gallery-item img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 10px;
   }
 
-  .gallery-item {
-    width: 100%; /* 1 фото в ряд */
+  /* Адаптивность */
+  @media (max-width: 768px) {
+    .gallery-container {
+      width: calc(50% - 10px); /* 2 фото в ряд */
+    }
+
+    .gallery-item {
+      width: calc(50% - 10px); /* 2 фото в ряд */
+      min-height: 640px; /* Высота под фото 1280px (ширина / 2) */
+    }
   }
-}
-/* Модальное окно */
-.modal {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.9);
-  z-index: 9999;
-}
 
-.modal-content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-  overflow: hidden;
-  max-width: 90%;
-  max-height: 90%;
-}
+  @media (max-width: 480px) {
+    .gallery-container {
+      width: 100%; /* 1 фото в ряд */
+    }
 
-.modal-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(255, 255, 255, 0.8);
-  color: #333;
-  font-size: 24px;
-  padding: 10px 20px;
-  border: none;
-  cursor: pointer;
-  z-index: 1000;
-}
+    .gallery-item {
+      width: 100%; /* 1 фото в ряд */
+      min-height: 1280px; /* Полный размер фото */
+    }
+  }
 
-#prev-image {
-  left: 10px;
-}
+  /* Модальное окно */
+  .modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 9999;
+  }
 
-#next-image {
-  right: 10px;
-}
+  .modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    max-width: 90%;
+    max-height: 90%;
+  }
 
-#fullscreen-image {
-  max-width: 100%;
-  max-height: 80vh;
-  display: block;
-  margin: auto;
-}
+  .modal-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #333;
+    font-size: 24px;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    z-index: 1000;
+  }
+
+  #prev-image {
+    left: 10px;
+  }
+
+  #next-image {
+    right: 10px;
+  }
+
+  #fullscreen-image {
+    max-width: 100%;
+    max-height: 80vh;
+    display: block;
+    margin: auto;
+  }
 </style>
 </head>
 <body>
@@ -257,15 +261,15 @@
   <div class="gallery">
     <div class="gallery-container" id="galleryContainer">
       <!-- Оригинальные фото -->
-      <div class="gallery-item"><img src="images/grav1.jpg" alt="Сувениры" data-fullscreen-src="images/grav1.jpg" srcset="images/grav1-small.jpg 400w, images/grav1-medium.jpg 600w, images/grav1-large.jpg 800w" sizes="(max-width: 400px) 100vw, (max-width: 600px) 50vw, 33.33vw"></div>
-      <div class="gallery-item"><img src="images/grav2.jpg" alt="Таблички для дома или бани" data-fullscreen-src="images/grav2.jpg" srcset="images/grav2-small.jpg 400w, images/grav2-medium.jpg 600w, images/grav2-large.jpg 800w" sizes="(max-width: 400px) 100vw, (max-width: 600px) 50vw, 33.33vw"></div>
-      <div class="gallery-item"><img src="images/grav3.jpg" alt="Медали" data-fullscreen-src="images/grav3.jpg" srcset="images/grav3-small.jpg 400w, images/grav3-medium.jpg 600w, images/grav3-large.jpg 800w" sizes="(max-width: 400px) 100vw, (max-width: 600px) 50vw, 33.33vw"></div>
-      <div class="gallery-item"><img src="images/grav4.jpg" alt="Подставки" data-fullscreen-src="images/grav4.jpg" srcset="images/grav4-small.jpg 400w, images/grav4-medium.jpg 600w, images/grav4-large.jpg 800w" sizes="(max-width: 400px) 100vw, (max-width: 600px) 50vw, 33.33vw"></div>
-      <div class="gallery-item"><img src="images/grav5.jpg" alt="Лазерная гравировка" data-fullscreen-src="images/grav5.jpg" srcset="images/grav5-small.jpg 400w, images/grav5-medium.jpg 600w, images/grav5-large.jpg 800w" sizes="(max-width: 400px) 100vw, (max-width: 600px) 50vw, 33.33vw"></div>
-      <div class="gallery-item"><img src="images/grav6.jpg" alt="Подставки из сруба" data-fullscreen-src="images/grav6.jpg" srcset="images/grav6-small.jpg 400w, images/grav6-medium.jpg 600w, images/grav6-large.jpg 800w" sizes="(max-width: 400px) 100vw, (max-width: 600px) 50vw, 33.33vw"></div>
-      <div class="gallery-item"><img src="images/grav7.jpg" alt="Грамоты и дипломы" data-fullscreen-src="images/grav7.jpg" srcset="images/grav7-small.jpg 400w, images/grav7-medium.jpg 600w, images/grav7-large.jpg 800w" sizes="(max-width: 400px) 100vw, (max-width: 600px) 50vw, 33.33vw"></div>
-      <div class="gallery-item"><img src="images/grav8.jpg" alt="Лазерная гравировка" data-fullscreen-src="images/grav8.jpg" srcset="images/grav8-small.jpg 400w, images/grav8-medium.jpg 600w, images/grav8-large.jpg 800w" sizes="(max-width: 400px) 100vw, (max-width: 600px) 50vw, 33.33vw"></div>
-        </div>
+      <div class="gallery-item"><img src="images/grav1.jpg" alt="Сувениры" data-fullscreen-src="images/grav1.jpg"></div>
+      <div class="gallery-item"><img src="images/grav2.jpg" alt="Таблички для дома или бани" data-fullscreen-src="images/grav2.jpg"></div>
+      <div class="gallery-item"><img src="images/grav3.jpg" alt="Медали" data-fullscreen-src="images/grav3.jpg"></div>
+      <div class="gallery-item"><img src="images/grav4.jpg" alt="Подставки" data-fullscreen-src="images/grav4.jpg"></div>
+      <div class="gallery-item"><img src="images/grav5.jpg" alt="Лазерная гравировка" data-fullscreen-src="images/grav5.jpg"></div>
+      <div class="gallery-item"><img src="images/grav6.jpg" alt="Подставки из сруба" data-fullscreen-src="images/grav6.jpg"></div>
+      <div class="gallery-item"><img src="images/grav7.jpg" alt="Грамоты и дипломы" data-fullscreen-src="images/grav7.jpg"></div>
+      <div class="gallery-item"><img src="images/grav8.jpg" alt="Лазерная гравировка" data-fullscreen-src="images/grav8.jpg"></div>
+    </div>
   </div>
 </section>
 
@@ -308,79 +312,79 @@
 
 <!-- JavaScript -->
 <script>
-// Автоматическое пролистывание галереи
-let currentIndex = 0;
-const galleryContainer = document.getElementById("galleryContainer");
-const galleryItems = document.querySelectorAll(".gallery-item");
+  // Автоматическое пролистывание галереи
+  let currentIndex = 0;
+  const galleryContainer = document.getElementById("galleryContainer");
+  const galleryItems = document.querySelectorAll(".gallery-item");
 
-function startAutoSlide() {
-  setInterval(() => {
-    currentIndex = (currentIndex + 1) % galleryItems.length; // Циклическое прокручивание
-    const itemWidth = galleryItems[0].offsetWidth; // Ширина одного элемента
-    galleryContainer.style.transform = `translateX(-${currentIndex * itemWidth}px)`; // Прокручиваем по одному фото
-  }, 5000); // Каждые 5 секунд
-}
-
-startAutoSlide();
-
-// Открытие модального окна
-const modal = document.getElementById("fullscreen-modal");
-const modalImage = document.getElementById("fullscreen-image");
-const prevBtn = document.getElementById("prev-image");
-const nextBtn = document.getElementById("next-image");
-
-if (!modal || !modalImage || !prevBtn || !nextBtn) {
-  console.error("Ошибка: Не найден один из элементов модального окна");
-} else {
-  document.querySelectorAll(".gallery-item img").forEach(img => {
-    img.addEventListener("click", () => {
-      modal.style.display = "block";
-      modalImage.src = img.getAttribute("data-fullscreen-src");
-    });
-  });
-
-  // Закрытие модального окна
-  modal.addEventListener("click", (e) => {
-    if (e.target === modal) {
-      modal.style.display = "none";
-    }
-  });
-
-  // Переключение фото в модальном окне
-  let currentModalIndex = 0;
-
-  nextBtn.addEventListener("click", () => {
-    currentModalIndex = (currentModalIndex + 1) % galleryItems.length;
-    modalImage.src = galleryItems[currentModalIndex].querySelector("img").getAttribute("data-fullscreen-src");
-  });
-
-  prevBtn.addEventListener("click", () => {
-    currentModalIndex = (currentModalIndex - 1 + galleryItems.length) % galleryItems.length;
-    modalImage.src = galleryItems[currentModalIndex].querySelector("img").getAttribute("data-fullscreen-src");
-  });
-
-  // Бесконечное пролистывание в модальном окне
-  let modalAutoSlide = null;
-
-  function startModalAutoSlide() {
-    modalAutoSlide = setInterval(() => {
-      currentModalIndex = (currentModalIndex + 1) % galleryItems.length;
-      modalImage.src = galleryItems[currentModalIndex].querySelector("img").getAttribute("data-fullscreen-src");
+  function startAutoSlide() {
+    setInterval(() => {
+      currentIndex = (currentIndex + 1) % galleryItems.length;
+      const itemWidth = galleryItems[0].offsetWidth;
+      galleryContainer.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
     }, 5000);
   }
 
-  // Останавливаем автопрокрутку при наведении
-  modal.addEventListener("mouseenter", () => {
-    clearInterval(modalAutoSlide);
-  });
+  startAutoSlide();
 
-  modal.addEventListener("mouseleave", () => {
+  // Открытие модального окна
+  const modal = document.getElementById("fullscreen-modal");
+  const modalImage = document.getElementById("fullscreen-image");
+  const prevBtn = document.getElementById("prev-image");
+  const nextBtn = document.getElementById("next-image");
+
+  if (!modal || !modalImage || !prevBtn || !nextBtn) {
+    console.error("Ошибка: Не найден один из элементов модального окна");
+  } else {
+    document.querySelectorAll(".gallery-item img").forEach(img => {
+      img.addEventListener("click", () => {
+        modal.style.display = "block";
+        modalImage.src = img.getAttribute("data-fullscreen-src");
+      });
+    });
+
+    // Закрытие модального окна
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        modal.style.display = "none";
+      }
+    });
+
+    // Переключение фото в модальном окне
+    let currentModalIndex = 0;
+
+    nextBtn.addEventListener("click", () => {
+      currentModalIndex = (currentModalIndex + 1) % galleryItems.length;
+      modalImage.src = galleryItems[currentModalIndex].querySelector("img").getAttribute("data-fullscreen-src");
+    });
+
+    prevBtn.addEventListener("click", () => {
+      currentModalIndex = (currentModalIndex - 1 + galleryItems.length) % galleryItems.length;
+      modalImage.src = galleryItems[currentModalIndex].querySelector("img").getAttribute("data-fullscreen-src");
+    });
+
+    // Бесконечное пролистывание в модальном окне
+    let modalAutoSlide = null;
+
+    function startModalAutoSlide() {
+      modalAutoSlide = setInterval(() => {
+        currentModalIndex = (currentModalIndex + 1) % galleryItems.length;
+        modalImage.src = galleryItems[currentModalIndex].querySelector("img").getAttribute("data-fullscreen-src");
+      }, 5000);
+    }
+
+    // Останавливаем автопрокрутку при наведении
+    modal.addEventListener("mouseenter", () => {
+      clearInterval(modalAutoSlide);
+    });
+
+    modal.addEventListener("mouseleave", () => {
+      startModalAutoSlide();
+    });
+
+    // И запускаем изначально
     startModalAutoSlide();
-  });
-
-  // И запускаем изначально
-  startModalAutoSlide();
-}
+  }
 </script>
 
 </body>
