@@ -201,7 +201,8 @@
   max-height: 80vh;
   display: block;
   margin: auto;
-}</style>
+}
+</style>
 </head>
 <body>
 
@@ -301,11 +302,14 @@ function startAutoSlide() {
 }
 
 startAutoSlide();
+
 // Открытие модального окна
 const modal = document.getElementById("fullscreen-modal");
 const modalImage = document.getElementById("fullscreen-image");
+const prevBtn = document.getElementById("prev-image");
+const nextBtn = document.getElementById("next-image");
 
-if (!modal || !modalImage) {
+if (!modal || !modalImage || !prevBtn || !nextBtn) {
   console.error("Ошибка: Не найден один из элементов модального окна");
 } else {
   document.querySelectorAll(".gallery-item img").forEach(img => {
@@ -321,7 +325,6 @@ if (!modal || !modalImage) {
       modal.style.display = "none";
     }
   });
-}
 
   // Переключение фото в модальном окне
   let currentModalIndex = 0;
@@ -357,6 +360,7 @@ if (!modal || !modalImage) {
 
   // И запускаем изначально
   startModalAutoSlide();
+}
 </script>
 
 </body>
