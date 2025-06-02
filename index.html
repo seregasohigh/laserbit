@@ -132,12 +132,12 @@
   display: flex;
   transition: transform 0.5s ease;
   gap: 10px;
-  width: calc(33.33% - 10px); /* Теперь 3 фото в ряд */
+  width: calc(25% - 10px); /* Ширина одного фото */
 }
 
 .gallery-item {
-  width: calc(33.33% - 10px); /* 3 фото в ряд */
-  min-height: 200px; /* Минимальная высота */
+  width: calc(25% - 10px); /* 4 фото в ряд */
+  height: auto;
   padding: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   cursor: pointer;
@@ -150,6 +150,26 @@
   border-radius: 10px;
 }
 
+/* Медиазапросы для мобильных устройств */
+@media (max-width: 768px) {
+  .gallery-container {
+    width: calc(50% - 10px); /* 2 фото в ряд */
+  }
+
+  .gallery-item {
+    width: calc(50% - 10px); /* 2 фото в ряд */
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery-container {
+    width: 100%; /* 1 фото в ряд */
+  }
+
+  .gallery-item {
+    width: 100%; /* 1 фото в ряд */
+  }
+}
 /* Модальное окно */
 .modal {
   display: none;
@@ -237,14 +257,23 @@
   <div class="gallery">
     <div class="gallery-container" id="galleryContainer">
       <!-- Оригинальные фото -->
-      <div class="gallery-item"><img src="images/grav1.jpg" alt="Сувениры" data-fullscreen-src="images/grav1.jpg"></div>
-      <div class="gallery-item"><img src="images/grav2.jpg" alt="Таблички для дома или бани" data-fullscreen-src="images/grav2.jpg"></div>
-      <div class="gallery-item"><img src="images/grav3.jpg" alt="Медали" data-fullscreen-src="images/grav3.jpg"></div>
-      <div class="gallery-item"><img src="images/grav4.jpg" alt="Подставки" data-fullscreen-src="images/grav4.jpg"></div>
-      <div class="gallery-item"><img src="images/grav5.jpg" alt="Лазерная гравировка" data-fullscreen-src="images/grav5.jpg"></div>
-      <div class="gallery-item"><img src="images/grav6.jpg" alt="Подставки из сруба" data-fullscreen-src="images/grav6.jpg"></div>
-      <div class="gallery-item"><img src="images/grav7.jpg" alt="Грамоты и дипломы" data-fullscreen-src="images/grav7.jpg"></div>
-      <div class="gallery-item"><img src="images/grav8.jpg" alt="Лазерная гравировка" data-fullscreen-src="images/grav8.jpg"></div>
+      <div class="gallery-item"><img src="images/grav1.jpg" alt="Сувениры" data-fullscreen-src="images/grav1.jpg" srcset="images/grav1-small.jpg 400w, images/grav1-medium.jpg 600w, images/grav1-large.jpg 800w" sizes="(max-width: 400px) 100vw, (max-width: 600px) 50vw, 33.33vw"></div>
+      <div class="gallery-item"><img src="images/grav2.jpg" alt="Таблички для дома или бани" data-fullscreen-src="images/grav2.jpg" srcset="images/grav2-small.jpg 400w, images/grav2-medium.jpg 600w, images/grav2-large.jpg 800w" sizes="(max-width: 400px) 100vw, (max-width: 600px) 50vw, 33.33vw"></div>
+      <div class="gallery-item"><img src="images/grav3.jpg" alt="Медали" data-fullscreen-src="images/grav3.jpg" srcset="images/grav3-small.jpg 400w, images/grav3-medium.jpg 600w, images/grav3-large.jpg 800w" sizes="(max-width: 400px) 100vw, (max-width: 600px) 50vw, 33.33vw"></div>
+      <div class="gallery-item"><img src="images/grav4.jpg" alt="Подставки" data-fullscreen-src="images/grav4.jpg" srcset="images/grav4-small.jpg 400w, images/grav4-medium.jpg 600w, images/grav4-large.jpg 800w" sizes="(max-width: 400px) 100vw, (max-width: 600px) 50vw, 33.33vw"></div>
+      <div class="gallery-item"><img src="images/grav5.jpg" alt="Лазерная гравировка" data-fullscreen-src="images/grav5.jpg" srcset="images/grav5-small.jpg 400w, images/grav5-medium.jpg 600w, images/grav5-large.jpg 800w" sizes="(max-width: 400px) 100vw, (max-width: 600px) 50vw, 33.33vw"></div>
+      <div class="gallery-item"><img src="images/grav6.jpg" alt="Подставки из сруба" data-fullscreen-src="images/grav6.jpg" srcset="images/grav6-small.jpg 400w, images/grav6-medium.jpg 600w, images/grav6-large.jpg 800w" sizes="(max-width: 400px) 100vw, (max-width: 600px) 50vw, 33.33vw"></div>
+      <div class="gallery-item"><img src="images/grav7.jpg" alt="Грамоты и дипломы" data-fullscreen-src="images/grav7.jpg" srcset="images/grav7-small.jpg 400w, images/grav7-medium.jpg 600w, images/grav7-large.jpg 800w" sizes="(max-width: 400px) 100vw, (max-width: 600px) 50vw, 33.33vw"></div>
+      <div class="gallery-item"><img src="images/grav8.jpg" alt="Лазерная гравировка" data-fullscreen-src="images/grav8.jpg" srcset="images/grav8-small.jpg 400w, images/grav8-medium.jpg 600w, images/grav8-large.jpg 800w" sizes="(max-width: 400px) 100vw, (max-width: 600px) 50vw, 33.33vw"></div>
+      <!-- Дубликаты фото -->
+      <div class="gallery-item"><img src="images/grav1.jpg" alt="Сувениры" data-fullscreen-src="images/grav1.jpg" srcset="images/grav1-small.jpg 400w, images/grav1-medium.jpg 600w, images/grav1-large.jpg 800w" sizes="(max-width: 400px) 100vw, (max-width: 600px) 50vw, 33.33vw"></div>
+      <div class="gallery-item"><img src="images/grav2.jpg" alt="Таблички для дома или бани" data-fullscreen-src="images/grav2.jpg" srcset="images/grav2-small.jpg 400w, images/grav2-medium.jpg 600w, images/grav2-large.jpg 800w" sizes="(max-width: 400px) 100vw, (max-width: 600px) 50vw, 33.33vw"></div>
+      <div class="gallery-item"><img src="images/grav3.jpg" alt="Медали" data-fullscreen-src="images/grav3.jpg" srcset="images/grav3-small.jpg 400w, images/grav3-medium.jpg 600w, images/grav3-large.jpg 800w" sizes="(max-width: 400px) 100vw, (max-width: 600px) 50vw, 33.33vw"></div>
+      <div class="gallery-item"><img src="images/grav4.jpg" alt="Подставки" data-fullscreen-src="images/grav4.jpg" srcset="images/grav4-small.jpg 400w, images/grav4-medium.jpg 600w, images/grav4-large.jpg 800w" sizes="(max-width: 400px) 100vw, (max-width: 600px) 50vw, 33.33vw"></div>
+      <div class="gallery-item"><img src="images/grav5.jpg" alt="Лазерная гравировка" data-fullscreen-src="images/grav5.jpg" srcset="images/grav5-small.jpg 400w, images/grav5-medium.jpg 600w, images/grav5-large.jpg 800w" sizes="(max-width: 400px) 100vw, (max-width: 600px) 50vw, 33.33vw"></div>
+      <div class="gallery-item"><img src="images/grav6.jpg" alt="Подставки из сруба" data-fullscreen-src="images/grav6.jpg" srcset="images/grav6-small.jpg 400w, images/grav6-medium.jpg 600w, images/grav6-large.jpg 800w" sizes="(max-width: 400px) 100vw, (max-width: 600px) 50vw, 33.33vw"></div>
+      <div class="gallery-item"><img src="images/grav7.jpg" alt="Грамоты и дипломы" data-fullscreen-src="images/grav7.jpg" srcset="images/grav7-small.jpg 400w, images/grav7-medium.jpg 600w, images/grav7-large.jpg 800w" sizes="(max-width: 400px) 100vw, (max-width: 600px) 50vw, 33.33vw"></div>
+      <div class="gallery-item"><img src="images/grav8.jpg" alt="Лазерная гравировка" data-fullscreen-src="images/grav8.jpg" srcset="images/grav8-small.jpg 400w, images/grav8-medium.jpg 600w, images/grav8-large.jpg 800w" sizes="(max-width: 400px) 100vw, (max-width: 600px) 50vw, 33.33vw"></div>
     </div>
   </div>
 </section>
