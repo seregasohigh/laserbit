@@ -122,57 +122,56 @@
     text-decoration: none;
   }
 
-  /* Галерея */
-  .gallery {
-    position: relative;
-    overflow: hidden;
-  }
+/* Галерея */
+.gallery {
+  position: relative;
+  overflow: hidden;
+}
 
+.gallery-container {
+  display: flex;
+  transition: transform 0.5s ease;
+  gap: 10px;
+  width: calc(25% - 10px); /* Ширина одного фото */
+}
+
+.gallery-item {
+  width: calc(25% - 10px); /* 4 фото в ряд */
+  min-height: 300px; /* Минимальная высота */
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+/* Медиазапросы для мобильных устройств */
+@media (max-width: 768px) {
   .gallery-container {
-    display: flex;
-    transition: transform 0.5s ease;
-    gap: 10px;
-    width: calc(25% - 10px); /* 4 фото в ряд */
+    width: calc(50% - 10px); /* 2 фото в ряд */
   }
 
   .gallery-item {
-    width: calc(25% - 10px); /* 4 фото в ряд */
-    min-height: 320px; /* Высота под фото 1280px (ширина / 4) */
-    padding: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    overflow: hidden;
+    width: calc(50% - 10px); /* 2 фото в ряд */
+    min-height: 400px; /* Более высокие фото на мобильных */
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery-container {
+    width: 100%; /* 1 фото в ряд */
   }
 
-  .gallery-item img {
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-    border-radius: 10px;
+  .gallery-item {
+    width: 100%; /* 1 фото в ряд */
+    min-height: 600px; /* Очень высокие фото на самых маленьких экранах */
   }
-
-  /* Адаптивность */
-  @media (max-width: 768px) {
-    .gallery-container {
-      width: calc(50% - 10px); /* 2 фото в ряд */
-    }
-
-    .gallery-item {
-      width: calc(50% - 10px); /* 2 фото в ряд */
-      min-height: 640px; /* Высота под фото 1280px (ширина / 2) */
-    }
-  }
-
-  @media (max-width: 480px) {
-    .gallery-container {
-      width: 100%; /* 1 фото в ряд */
-    }
-
-    .gallery-item {
-      width: 100%; /* 1 фото в ряд */
-      min-height: 1280px; /* Полный размер фото */
-    }
-  }
+}
 
   /* Модальное окно */
   .modal {
