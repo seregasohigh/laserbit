@@ -4,27 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>LaserBit — Лазерная гравировка и резка</title>
-   <!-- Favicon (для браузеров) -->
+
+  <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-
-  <!-- Альтернативные иконки для разных размеров -->
   <link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
-
-  <!-- Apple Touch Icons (для iPhone, iPad и т.д.) -->
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
-
-  <!-- Web App Manifest (для PWA и Android) -->
   <link rel="manifest" href="site.webmanifest">
-
-  <!-- Мета-теги для Windows 8 и 10 -->
   <meta name="msapplication-TileColor" content="#2c3e50">
   <meta name="msapplication-TileImage" content="mstile-144x144.png">
   <meta name="theme-color" content="#ffffff">
 
-  <!-- Твой CSS и прочее -->
-  <style>
-    /* Твой текущий CSS */
-  </style>
   <style>
     * {
       margin: 0;
@@ -68,7 +57,7 @@
       justify-content: center;
     }
 
-    .service, .work {
+    .service, .work, .gallery-item {
       background: white;
       padding: 20px;
       border-radius: 10px;
@@ -77,9 +66,26 @@
       text-align: center;
     }
 
-    .service h3, .work h3 {
+    .service h3, .work h3, .gallery-item h3 {
       margin-bottom: 10px;
       color: #2c3e50;
+    }
+
+    .gallery {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gallery-container {
+      display: flex;
+      transition: transform 0.5s ease;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      cursor: pointer;
     }
 
     form {
@@ -90,12 +96,18 @@
       margin: auto;
     }
 
-    form input, form textarea, form button {
+    form label {
+      display: block;
+      margin-bottom: 15px;
+    }
+
+    form input,
+    form textarea {
       width: 100%;
       padding: 10px;
-      margin-top: 10px;
       border: none;
       border-radius: 5px;
+      font-size: 1rem;
     }
 
     form button {
@@ -103,6 +115,11 @@
       color: white;
       cursor: pointer;
       transition: 0.3s;
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
     }
 
     form button:hover {
@@ -116,98 +133,191 @@
       padding: 20px;
       margin-top: 40px;
     }
+
+    footer a {
+      color: #27ae60;
+      text-decoration: none;
+    }
+
+    /* Модальное окно */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      z-index: 9999;
+    }
+
+    .modal-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      overflow: hidden;
+      max-width: 90%;
+      max-height: 90%;
+    }
+
+    .modal-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(255, 255, 255, 0.8);
+      color: #333;
+      font-size: 24px;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    #prev-image {
+      left: 10px;
+    }
+
+    #next-image {
+      right: 10px;
+    }
+
+    #fullscreen-image {
+      max-width: 100%;
+      max-height: 80vh;
+      display: block;
+      margin: auto;
+    }
   </style>
 </head>
 <body>
 
-  <!-- Header -->
-  <header>
-    <h1>LaserBit</h1>
-    <p>Лазерная гравировка и резка фанеры. Стильно. Точно. Быстро.</p>
-  </header>
+<!-- Header -->
+<header>
+  <h1>LaserBit</h1>
+  <p>Лазерная гравировка и резка фанеры. Стильно. Точно. Быстро.</p>
+</header>
 
-  <!-- Services -->
-  <section>
-    <h2 style="text-align:center; margin-bottom: 30px;">Наши услуги</h2>
-    <div class="services">
-      <div class="service">
-        <h3>Гравировка</h3>
-        <p>Нанесение текста, узоров, логотипов и изображений на фанеру.</p>
-      </div>
-      <div class="service">
-        <h3>Лазерная резка</h3>
-        <p>Точная вырезка деталей любой сложности из фанеры и акрила.</p>
-      </div>
-      <div class="service">
-        <h3>Индивидуальные проекты</h3>
-        <p>Создание уникальных подарков, декора, мебели и игрушек по вашим чертежам.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Portfolio -->
-  <section>
-    <h2 style="text-align:center; margin-bottom: 30px;">Примеры работ</h2>
-    <div class="portfolio">
-      <div class="work">
-        <h3>Фоторамка</h3>
-        <img src="https://via.placeholder.com/300x200?text=Фоторамка" alt="Фоторамка" style="width:100%; border-radius:10px;">
-      </div>
-      <div class="work">
-        <h3>Подарочная шкатулка</h3>
-        <img src="https://via.placeholder.com/300x200?text=Шкатулка" alt="Шкатулка" style="width:100%; border-radius:10px;">
-      </div>
-      <div class="work">
-        <h3>Елочная игрушка</h3>
-        <img src="https://via.placeholder.com/300x200?text=Игрушка" alt="Игрушка" style="width:100%; border-radius:10px;">
-      </div>
-    </div>
-  </section>
-
-  <!-- Order Form -->
+<!-- Services -->
 <section>
-  <h2 style="text-align:center; margin-bottom: 30px;">Оформить заказ</h2>
-<form id="orderForm" action="https://formspree.io/f/mblyjgyz"  method="POST">
-  <!-- Имя -->
-  <label>
-    Ваше имя:
-    <input type="text" name="name" required />
-  </label>
-
-  <!-- Email -->
-  <label>
-    Email для связи:
-    <input type="email" name="email" required />
-  </label>
-
-  <!-- Сообщение -->
-  <label>
-    Описание заказа:
-    <textarea name="message" rows="4" required></textarea>
-  </label>
-
-  <!-- Перенаправление -->
-  <input type="hidden" name="_next" value="https://seregasohigh.github.io/laserbit/thank-you.html"  />
-
-  <!-- Кнопка -->
-  <button type="submit">Отправить запрос</button>
-</form>
+  <h2 style="text-align:center; margin-bottom: 30px;">Наши услуги</h2>
+  <div class="services">
+    <div class="service">
+      <h3>Гравировка</h3>
+      <p>Нанесение текста, узоров, логотипов и изображений на фанеру, кожу, стекло и металл.</p>
+    </div>
+    <div class="service">
+      <h3>Лазерная резка</h3>
+      <p>Точная вырезка деталей любой сложности из фанеры или пластика.</p>
+    </div>
+    <div class="service">
+      <h3>Индивидуальные проекты</h3>
+      <p>Создание уникальных подарков, декора, игрушек по вашим чертежам. Гравировка раскладки клавиатуры.</p>
+    </div>
+  </div>
 </section>
 
-  <!-- Footer -->
+<!-- Portfolio -->
+<section>
+  <h2 style="text-align:center; margin-bottom: 30px;">Примеры работ</h2>
+  <div class="gallery">
+    <div class="gallery-container" id="galleryContainer">
+      <div class="gallery-item"><img src="images/grav1.jpg" alt="Сувениры" data-fullscreen-src="images/grav1.jpg"></div>
+      <div class="gallery-item"><img src="images/grav2.jpg" alt="Таблички для дома или бани" data-fullscreen-src="images/grav2.jpg"></div>
+      <div class="gallery-item"><img src="images/grav3.jpg" alt="Медали" data-fullscreen-src="images/grav3.jpg"></div>
+      <div class="gallery-item"><img src="images/grav4.jpg" alt="Подставки" data-fullscreen-src="images/grav4.jpg"></div>
+      <div class="gallery-item"><img src="images/grav5.jpg" alt="Лазерная гравировка" data-fullscreen-src="images/grav5.jpg"></div>
+      <div class="gallery-item"><img src="images/grav6.jpg" alt="Подставки из сруба" data-fullscreen-src="images/grav6.jpg"></div>
+      <div class="gallery-item"><img src="images/grav7.jpg" alt="Грамоты и дипломы" data-fullscreen-src="images/grav7.jpg"></div>
+      <div class="gallery-item"><img src="images/grav8.jpg" alt="Лазерная гравировка" data-fullscreen-src="images/grav8.jpg"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Order Form -->
+<section>
+  <h2 style="text-align:center; margin-bottom: 30px;">Оформить заказ</h2>
+  <form id="orderForm" action="https://formspree.io/f/mblyjgyz"  method="POST">
+    <label>
+      Ваше имя:
+      <input type="text" name="name" required />
+    </label>
+    <label>
+      Email для связи:
+      <input type="email" name="email" required />
+    </label>
+    <label>
+      Описание заказа:
+      <textarea name="message" rows="4" required></textarea>
+    </label>
+    <input type="hidden" name="_next" value="https://seregasohigh.github.io/laserbit/thank-you.html"  />
+    <button type="submit">Отправить запрос</button>
+  </form>
+</section>
+
+<!-- Footer -->
 <footer>
   <p>&copy; 2025 LaserBit. Все права защищены.</p>
   <p>Телефон: <a href="tel:+79778740953">+7 (977) 874-09-53</a></p>
   <p>Telegram: <a href="https://t.me/Bloodzilla"  target="_blank">@Bloodzilla</a></p>
 </footer>
 
-  <!-- JavaScript -->
+<!-- Modal Fullscreen Image -->
+<div id="fullscreen-modal" class="modal">
+  <div class="modal-content">
+    <button id="prev-image" class="modal-arrow"><</button>
+    <button id="next-image" class="modal-arrow">></button>
+    <img id="fullscreen-image" src="" alt="Фото в полный экран">
+  </div>
+</div>
+
+<!-- JavaScript -->
 <script>
-  document.getElementById('orderForm').addEventListener('submit', function(e) {
-    // Показываем сообщение
-    alert("Спасибо! Мы получили ваш запрос и свяжемся с вами в ближайшее время.");
-    
-    // Не блокируем отправку — форма будет отправлена на Formspree
+  // Автоматическое пролистывание галереи
+  let currentIndex = 0;
+  const galleryContainer = document.getElementById("galleryContainer");
+  const galleryItems = document.querySelectorAll(".gallery-item");
+
+  function startAutoSlide() {
+    setInterval(() => {
+      currentIndex = (currentIndex + 1) % galleryItems.length;
+      galleryContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
+    }, 5000); // Каждые 5 секунд
+  }
+
+  startAutoSlide();
+
+  // Открытие модального окна
+  document.querySelectorAll(".gallery-item img").forEach(img => {
+    img.addEventListener("click", () => {
+      const modal = document.getElementById("fullscreen-modal");
+      const modalImage = document.getElementById("fullscreen-image");
+      modal.style.display = "block";
+      modalImage.src = img.getAttribute("data-fullscreen-src");
+    });
+  });
+
+  // Закрытие при клике вне изображения
+  document.getElementById("fullscreen-modal").addEventListener("click", function(e) {
+    if (e.target === e.currentTarget) {
+      e.currentTarget.style.display = "none";
+    }
+  });
+
+  // Переключение стрелками в модальном окне
+  let currentModalIndex = 0;
+
+  document.getElementById("next-image").addEventListener("click", () => {
+    currentModalIndex = (currentModalIndex + 1) % galleryItems.length;
+    document.getElementById("fullscreen-image").src = galleryItems[currentModalIndex].querySelector("img").getAttribute("data-fullscreen-src");
+  });
+
+  document.getElementById("prev-image").addEventListener("click", () => {
+    currentModalIndex = (currentModalIndex - 1 + galleryItems.length) % galleryItems.length;
+    document.getElementById("fullscreen-image").src = galleryItems[currentModalIndex].querySelector("img").getAttribute("data-fullscreen-src");
   });
 </script>
 
