@@ -165,15 +165,31 @@
   </section>
 
   <!-- Order Form -->
-  <section>
-    <h2 style="text-align:center; margin-bottom: 30px;">Оформить заказ</h2>
-    <form id="orderForm" action="https://formspree.io/f/mblyjgyz"  method="POST">
-      <input type="text" id="name" placeholder="Ваше имя" required />
-      <input type="email" id="email" placeholder="Email для связи" required />
-      <textarea id="message" rows="4" placeholder="Описание вашего заказа"></textarea>
-      <button type="submit">Отправить запрос</button>
-    </form>
-  </section>
+<section>
+  <h2 style="text-align:center; margin-bottom: 30px;">Оформить заказ</h2>
+  <form id="orderForm" action="https://formspree.io/f/mblyjgyz"  method="POST">
+    <!-- Имя -->
+    <label>
+      Ваше имя:
+      <input type="text" name="name" required />
+    </label>
+
+    <!-- Email -->
+    <label>
+      Email для связи:
+      <input type="email" name="email" required />
+    </label>
+
+    <!-- Сообщение -->
+    <label>
+      Описание заказа:
+      <textarea name="message" rows="4" required></textarea>
+    </label>
+
+    <!-- Кнопка -->
+    <button type="submit">Отправить запрос</button>
+  </form>
+</section>
 
   <!-- Footer -->
   <footer>
