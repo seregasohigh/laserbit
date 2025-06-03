@@ -116,59 +116,58 @@
       color: #fff;
     }
 
-    form {
-      background: rgba(255, 255, 255, 0.08);
-      padding: 20px;
-      border-radius: 10px;
-      max-width: 600px;
-      margin: auto;
-      backdrop-filter: blur(10px);
-    }
+form {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 600px;
+  margin: auto;
+  backdrop-filter: blur(10px);
+}
 
-    form label {
-      display: block;
-      margin-bottom: 15px;
-      font-weight: 600;
-    }
+form label {
+  display: block;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
 
-    form input, form textarea {
-      width: 100%;
-      padding: 10px;
-      border: none;
-      border-radius: 5px;
-      font-size: 1rem;
-    }
+form input, form textarea {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+}
 
-    form input:focus, form textarea:focus {
-      outline: 3px solid #27ae60;
-      background-color: #fff;
-      color: #000;
-    }
+form input:focus, form textarea:focus {
+  outline: 3px solid #27ae60;
+  background-color: #fff;
+  color: #000;
+}
 
-    form button {
-      background: #27ae60;
-      color: white;
-      cursor: pointer;
-      transition: 0.3s;
-      width: 100%;
-      padding: 10px;
-      border: none;
-      border-radius: 5px;
-      font-size: 1rem;
-      font-weight: 700;
-    }
+form button {
+  background: #27ae60;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 700;
+}
 
-    form button:hover,
-    form button:focus {
-      background: #219150;
-      outline: none;
-    }
+form button:hover,
+form button:focus {
+  background: #219150;
+  outline: none;
+}
 
-    #formMessage {
-      margin-top: 15px;
-      font-weight: 600;
-    }
-
+#formMessage {
+  margin-top: 15px;
+  font-weight: 600;
+}
     footer {
       background: rgba(44, 62, 80, 0.9);
       color: white;
@@ -394,20 +393,17 @@
   </section>
 
   <section id="order" tabindex="-1">
-    <h2 style="text-align:center; margin-bottom: 30px;">Оформить заказ</h2>
-    <form id="orderForm" action="https://formspree.io/f/mblyjgyz" method="POST" novalidate>
-      <label for="name">Ваше имя:</label>
-      <input type="text" id="name" name="name" required aria-required="true" />
-
-      <label for="email">Email для связи:</label>
-      <input type="email" id="email" name="email" required aria-required="true" />
-
-      <label for="message">Описание заказа:</label>
-      <textarea id="message" name="message" rows="4" required aria-required="true"></textarea>
-
-      <input type="hidden" name="_next" value="https://seregasohigh.github.io/laserbit/thank-you.html" />
-      <button type="submit" aria-label="Отправить запрос на оформление заказа">Отправить запрос</button>
-      <div id="formMessage" role="alert" aria-live="polite"></div>
+  <h2 style="text-align:center; margin-bottom: 30px;">Оформить заказ</h2>
+  <form id="orderForm" action="https://formspree.io/f/mblyjgyz"  method="POST" novalidate>
+    <label for="name">Ваше имя:</label>
+    <input type="text" id="name" name="name" required aria-required="true" />
+    <label for="email">Email для связи:</label>
+    <input type="email" id="email" name="email" required aria-required="true" />
+    <label for="message">Описание заказа:</label>
+    <textarea id="message" name="message" rows="4" required aria-required="true"></textarea>
+    <input type="hidden" name="_next" value="https://seregasohigh.github.io/laserbit/thank-you.html"  />
+    <button type="submit" aria-label="Отправить запрос на оформление заказа">Отправить запрос</button>
+    <div id="formMessage" role="alert" aria-live="polite"></div>
     </form>
   </section>
 </main>
@@ -508,44 +504,47 @@
 
   // Обработка формы с сообщениями пользователю
   const form = document.getElementById('orderForm');
-  const formMessage = document.getElementById('formMessage');
+const formMessage = document.getElementById('formMessage');
 
-  form.addEventListener('submit', e => {
-    e.preventDefault();
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
 
-    if (!form.checkValidity()) {
-      formMessage.textContent = 'Пожалуйста, заполните все поля корректно.';
-      formMessage.style.color = 'red';
-      return;
-    }
+  // Проверяем валидность формы
+  if (!form.checkValidity()) {
+    formMessage.textContent = 'Пожалуйста, заполните все поля корректно.';
+    formMessage.style.color = 'red';
+    return;
+  }
 
-    formMessage.textContent = 'Отправка…';
-    formMessage.style.color = '#fff';
+  // Отображаем сообщение "Отправка..."
+  formMessage.textContent = 'Отправка…';
+  formMessage.style.color = '#fff';
 
-    fetch(form.action, {
+  try {
+    const response = await fetch(form.action, {
       method: form.method,
       headers: { 'Accept': 'application/json' },
       body: new FormData(form),
-    }).then(response => {
-      if (response.ok) {
-        formMessage.textContent = 'Спасибо! Ваш запрос отправлен.';
-        formMessage.style.color = '#27ae60';
-        form.reset();
-      } else {
-        response.json().then(data => {
-          if (data.errors) {
-            formMessage.textContent = data.errors.map(e => e.message).join(", ");
-          } else {
-            formMessage.textContent = 'Произошла ошибка при отправке.';
-          }
-          formMessage.style.color = 'red';
-        });
-      }
-    }).catch(() => {
-      formMessage.textContent = 'Ошибка сети. Попробуйте позже.';
-      formMessage.style.color = 'red';
     });
-  });
+
+    if (response.ok) {
+      formMessage.textContent = 'Спасибо! Ваш запрос отправлен.';
+      formMessage.style.color = '#27ae60';
+      form.reset();
+    } else {
+      const data = await response.json();
+      if (data.errors) {
+        formMessage.textContent = data.errors.map(e => e.message).join(', ');
+      } else {
+        formMessage.textContent = 'Произошла ошибка при отправке.';
+      }
+      formMessage.style.color = 'red';
+    }
+  } catch (error) {
+    formMessage.textContent = 'Ошибка сети. Попробуйте позже.';
+    formMessage.style.color = 'red';
+  }
+});
 </script>
 
 </body>
