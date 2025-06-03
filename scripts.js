@@ -1,4 +1,20 @@
-document.addEventListener('DOMContentLoaded', () => {
+
+document.addEventListener("DOMContentLoaded", () => {
+  // --- Форма отправки ---
+  const form = document.getElementById("orderForm");
+  if (form) {
+    form.addEventListener("submit", function (e) {
+      const button = form.querySelector("button[type='submit']");
+      if (button) {
+        button.disabled = true;
+        button.textContent = "Отправка...";
+      }
+    });
+  }
+
+  // --- Модальная галерея (обернута в try-catch на случай ошибок) ---
+  try {
+    document.addEventListener('DOMContentLoaded', () => {
   const galleryItems = document.querySelectorAll('.gallery-item img');
   const modal = document.getElementById('fullscreen-modal');
   const modalImage = document.getElementById('fullscreen-image');
@@ -115,4 +131,9 @@ document.addEventListener('DOMContentLoaded', () => {
       formMessage.style.color = 'red';
     });
   });
+});
+
+  } catch (error) {
+    console.error("Ошибка в модальном скрипте:", error);
+  }
 });
