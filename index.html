@@ -298,6 +298,60 @@
     <img id="fullscreen-image" src="" alt="Фото в полный экран">
   </div>
 </div>
+<script>
+  const galleryItems = document.querySelectorAll('.gallery-item img');
+  const modal = document.getElementById('fullscreen-modal');
+  const modalImage = document.getElementById('fullscreen-image');
+  const prevButton = document.getElementById('prev-image');
+  const nextButton = document.getElementById('next-image');
+
+  let currentIndex = 0;
+
+  function openModal(index) {
+    currentIndex = index;
+    modalImage.src = galleryItems[currentIndex].src;
+    modal.style.display = 'block';
+  }
+
+  function closeModal() {
+    modal.style.display = 'none';
+  }
+
+  function showImage(index) {
+    currentIndex = (index + galleryItems.length) % galleryItems.length;
+    modalImage.src = galleryItems[currentIndex].src;
+  }
+
+  galleryItems.forEach((img, index) => {
+    img.addEventListener('click', () => openModal(index));
+  });
+
+  prevButton.addEventListener('click', () => showImage(currentIndex - 1));
+  nextButton.addEventListener('click', () => showImage(currentIndex + 1));
+
+  // Закрытие по клику вне изображения
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+
+  // Автослайдер (на главной, если виден блок)
+  let slideIndex = 0;
+
+  function autoSlide() {
+    if (!document.hidden) {
+      slideIndex = (slideIndex + 1) % galleryItems.length;
+      const container = document.getElementById('galleryContainer');
+      container.scrollTo({
+        left: galleryItems[slideIndex].offsetLeft - 20,
+        behavior: 'smooth'
+      });
+    }
+  }
+
+  setInterval(autoSlide, 4000); // каждые 4 секунды
+</script>
 
 </body>
 </html>
