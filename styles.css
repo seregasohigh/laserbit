@@ -1,0 +1,282 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+              url('images/fon.png') no-repeat center center fixed;
+  background-size: cover;
+  color: #fff;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+header {
+  background: rgba(44, 62, 80, 0.8);
+  color: white;
+  padding: 40px 20px;
+  text-align: center;
+  backdrop-filter: blur(8px);
+  border-bottom: 2px solid rgba(255,255,255,0.1);
+}
+
+header h1 {
+  font-size: 3rem;
+}
+
+header p {
+  font-size: 1.2rem;
+  margin-top: 10px;
+}
+
+nav {
+  background: rgba(44, 62, 80, 0.85);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+nav ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 10px 0;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+nav a {
+  color: #27ae60;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+nav a:hover,
+nav a:focus {
+  color: #1e874b;
+  outline: none;
+}
+
+main section {
+  padding: 40px 20px;
+  max-width: 1100px;
+  margin: auto;
+  scroll-margin-top: 70px;
+}
+
+.services, .portfolio {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.service {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  width: 300px;
+  text-align: center;
+  backdrop-filter: blur(8px);
+  transition: transform 0.3s ease;
+}
+.service:hover,
+.service:focus-within {
+  transform: translateY(-5px);
+}
+
+.service h3 {
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+form {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 600px;
+  margin: auto;
+  backdrop-filter: blur(10px);
+}
+
+form label {
+  display: block;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+form input, form textarea {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+form input:focus, form textarea:focus {
+  outline: 3px solid #27ae60;
+  background-color: #fff;
+  color: #000;
+}
+
+form button {
+  background: #27ae60;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+form button:hover,
+form button:focus {
+  background: #219150;
+  outline: none;
+}
+
+#formMessage {
+  margin-top: 15px;
+  font-weight: 600;
+}
+
+footer {
+  background: rgba(44, 62, 80, 0.9);
+  color: white;
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+  backdrop-filter: blur(8px);
+}
+
+footer a {
+  color: #27ae60;
+  text-decoration: none;
+}
+
+footer a:hover,
+footer a:focus {
+  text-decoration: underline;
+  outline: none;
+}
+
+.gallery {
+  overflow-x: auto;
+  padding: 10px 0;
+}
+
+.gallery-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.gallery-item {
+  flex: 0 0 calc(25% - 20px);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  text-align: center;
+  backdrop-filter: blur(6px);
+  transition: transform 0.3s ease;
+}
+
+.gallery-item:hover,
+.gallery-item:focus-within {
+  transform: scale(1.05);
+  outline: none;
+}
+
+.gallery-item img {
+  width: 100%;
+  border-radius: 10px;
+  display: block;
+}
+
+.gallery-item figure {
+  margin: 0;
+  text-align: center;
+}
+
+.gallery-item figcaption {
+  margin-top: 8px;
+  font-size: 0.9rem;
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .gallery-item {
+    flex: 0 0 calc(50% - 20px);
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery-item {
+    flex: 0 0 100%;
+  }
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 9999;
+}
+
+.modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 90%;
+  max-height: 90%;
+  outline: none;
+}
+
+.modal-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255,255,255,0.8);
+  color: #333;
+  font-size: 24px;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+#prev-image {
+  left: 10px;
+}
+
+#next-image {
+  right: 10px;
+}
+
+#fullscreen-image {
+  max-width: 100%;
+  max-height: 80vh;
+  display: block;
+  margin: auto;
+}
