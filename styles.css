@@ -280,3 +280,7 @@ footer a:focus {
   display: block;
   margin: auto;
 }
+
+html {
+  scroll-behavior: smooth;
+}
