@@ -215,6 +215,11 @@ function closeModal() {
     img.addEventListener('click', () => openModal(index));
   });
 
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && modal.style.display === 'block') {
+    closeModal();
+  }
+});
   prevButton.addEventListener('click', () => showImage(currentIndex - 1));
   nextButton.addEventListener('click', () => showImage(currentIndex + 1));
 
