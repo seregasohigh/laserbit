@@ -194,14 +194,18 @@
   const container = document.getElementById('galleryContainer');
   let currentIndex = 0;
 
-  function openModal(index) {
-    currentIndex = index;
-    modalImage.src = galleryItems[currentIndex].src;
-    modal.style.display = 'block';
-  }
+function openModal(index) {
+  currentIndex = index;
+  modalImage.src = galleryItems[currentIndex].src;
+  modal.style.display = 'block';
+  document.body.style.overflow = 'hidden'; // Отключаем прокрутку страницы
+}
 
-  function closeModal() {
-    modal.style.display = 'none';
+function closeModal() {
+  modal.style.display = 'none';
+  document.body.style.overflow = ''; // Восстанавливаем прокрутку
+}
+
   }
 
   function showImage(index) {
