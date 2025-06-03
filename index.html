@@ -324,15 +324,6 @@ document.addEventListener('keydown', (e) => {
     if (e.target === modal) closeModal();
   });
 
-  // Автопрокрутка галереи
-  let slideIndex = 0;
-  setInterval(() => {
-    if (!document.hidden) {
-      slideIndex = (slideIndex + 1) % galleryItems.length;
-      galleryItems[slideIndex].scrollIntoView({ behavior: 'smooth', inline: 'center' });
-    }
-  }, 4000);
-
   // Автослайд модального окна
   setInterval(() => {
     if (modal.style.display === 'block') {
