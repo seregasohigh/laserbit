@@ -206,8 +206,6 @@ function closeModal() {
   document.body.style.overflow = ''; // Восстанавливаем прокрутку
 }
 
-  }
-
   function showImage(index) {
     currentIndex = (index + galleryItems.length) % galleryItems.length;
     modalImage.src = galleryItems[currentIndex].src;
