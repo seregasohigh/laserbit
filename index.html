@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>LaserBit — Лазерная гравировка и резка</title>
 
+  <meta name="description" content="LaserBit — лазерная гравировка и резка фанеры, кожи, стекла и металла. Индивидуальные проекты, точность и качество." />
+  <meta name="keywords" content="лазерная гравировка, лазерная резка, гравировка фанеры, резка фанеры, подарки, декор, индивидуальные проекты" />
+
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -13,224 +16,291 @@
   <meta name="msapplication-TileImage" content="mstile-144x144.png">
   <meta name="theme-color" content="#ffffff">
 
-<style>
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-                url('images/fon.png') no-repeat center center fixed;
-    background-size: cover;
-    color: #fff;
-    line-height: 1.6;
-    overflow-x: hidden;
-  }
-
-  header {
-    background: rgba(44, 62, 80, 0.8);
-    color: white;
-    padding: 40px 20px;
-    text-align: center;
-    backdrop-filter: blur(8px);
-    border-bottom: 2px solid rgba(255,255,255,0.1);
-  }
-
-  header h1 {
-    font-size: 3rem;
-  }
-
-  header p {
-    font-size: 1.2rem;
-    margin-top: 10px;
-  }
-
-  main section {
-    padding: 40px 20px;
-    max-width: 1100px;
-    margin: auto;
-  }
-
-  .services, .portfolio {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-  }
-
-  .service {
-    background: rgba(255, 255, 255, 0.05);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.3);
-    width: 300px;
-    text-align: center;
-    backdrop-filter: blur(8px);
-  }
-
-  .service h3 {
-    margin-bottom: 10px;
-    color: #fff;
-  }
-
-  form {
-    background: rgba(255, 255, 255, 0.08);
-    padding: 20px;
-    border-radius: 10px;
-    max-width: 600px;
-    margin: auto;
-    backdrop-filter: blur(10px);
-  }
-
-  form label {
-    display: block;
-    margin-bottom: 15px;
-  }
-
-  form input, form textarea {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-  }
-
-  form button {
-    background: #27ae60;
-    color: white;
-    cursor: pointer;
-    transition: 0.3s;
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-  }
-
-  form button:hover {
-    background: #219150;
-  }
-
-  footer {
-    background: rgba(44, 62, 80, 0.9);
-    color: white;
-    text-align: center;
-    padding: 20px;
-    margin-top: 40px;
-    backdrop-filter: blur(8px);
-  }
-
-  footer a {
-    color: #27ae60;
-    text-decoration: none;
-  }
-
-  .gallery {
-    overflow-x: auto;
-    padding: 10px 0;
-  }
-
-  .gallery-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-  }
-
-  .gallery-item {
-    flex: 0 0 calc(25% - 20px);
-    background: rgba(255, 255, 255, 0.05);
-    padding: 10px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    text-align: center;
-    backdrop-filter: blur(6px);
-  }
-
-  .gallery-item img {
-    width: 100%;
-    border-radius: 10px;
-    display: block;
-  }
-
-  .gallery-item figure {
-    margin: 0;
-    text-align: center;
-  }
-
-  .gallery-item figcaption {
-    margin-top: 8px;
-    font-size: 0.9rem;
-    color: #fff;
-  }
-
-  @media (max-width: 768px) {
-    .gallery-item {
-      flex: 0 0 calc(50% - 20px);
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-  }
 
-  @media (max-width: 480px) {
-    .gallery-item {
-      flex: 0 0 100%;
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+                  url('images/fon.png') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      line-height: 1.6;
+      overflow-x: hidden;
     }
-  }
 
-  .modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
-    z-index: 9999;
-  }
+    header {
+      background: rgba(44, 62, 80, 0.8);
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+      backdrop-filter: blur(8px);
+      border-bottom: 2px solid rgba(255,255,255,0.1);
+    }
 
-  .modal-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    max-width: 90%;
-    max-height: 90%;
-  }
+    header h1 {
+      font-size: 3rem;
+    }
 
-  .modal-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(255,255,255,0.8);
-    color: #333;
-    font-size: 24px;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    z-index: 1000;
-  }
+    header p {
+      font-size: 1.2rem;
+      margin-top: 10px;
+    }
 
-  #prev-image {
-    left: 10px;
-  }
+    nav {
+      background: rgba(44, 62, 80, 0.85);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
 
-  #next-image {
-    right: 10px;
-  }
+    nav ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+      padding: 10px 0;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
 
-  #fullscreen-image {
-    max-width: 100%;
-    max-height: 80vh;
-    display: block;
-    margin: auto;
-  }
-</style>
+    nav a {
+      color: #27ae60;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    nav a:hover,
+    nav a:focus {
+      color: #1e874b;
+      outline: none;
+    }
+
+    main section {
+      padding: 40px 20px;
+      max-width: 1100px;
+      margin: auto;
+      scroll-margin-top: 70px; /* учитывает высоту меню */
+    }
+
+    .services, .portfolio {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .service {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      width: 300px;
+      text-align: center;
+      backdrop-filter: blur(8px);
+      transition: transform 0.3s ease;
+    }
+    .service:hover,
+    .service:focus-within {
+      transform: translateY(-5px);
+    }
+
+    .service h3 {
+      margin-bottom: 10px;
+      color: #fff;
+    }
+
+    form {
+      background: rgba(255, 255, 255, 0.08);
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 600px;
+      margin: auto;
+      backdrop-filter: blur(10px);
+    }
+
+    form label {
+      display: block;
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+
+    form input, form textarea {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    form input:focus, form textarea:focus {
+      outline: 3px solid #27ae60;
+      background-color: #fff;
+      color: #000;
+    }
+
+    form button {
+      background: #27ae60;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    form button:hover,
+    form button:focus {
+      background: #219150;
+      outline: none;
+    }
+
+    #formMessage {
+      margin-top: 15px;
+      font-weight: 600;
+    }
+
+    footer {
+      background: rgba(44, 62, 80, 0.9);
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+      backdrop-filter: blur(8px);
+    }
+
+    footer a {
+      color: #27ae60;
+      text-decoration: none;
+    }
+
+    footer a:hover,
+    footer a:focus {
+      text-decoration: underline;
+      outline: none;
+    }
+
+    .gallery {
+      overflow-x: auto;
+      padding: 10px 0;
+    }
+
+    .gallery-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .gallery-item {
+      flex: 0 0 calc(25% - 20px);
+      background: rgba(255, 255, 255, 0.05);
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      text-align: center;
+      backdrop-filter: blur(6px);
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-item:hover,
+    .gallery-item:focus-within {
+      transform: scale(1.05);
+      outline: none;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      border-radius: 10px;
+      display: block;
+    }
+
+    .gallery-item figure {
+      margin: 0;
+      text-align: center;
+    }
+
+    .gallery-item figcaption {
+      margin-top: 8px;
+      font-size: 0.9rem;
+      color: #fff;
+    }
+
+    @media (max-width: 768px) {
+      .gallery-item {
+        flex: 0 0 calc(50% - 20px);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .gallery-item {
+        flex: 0 0 100%;
+      }
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      z-index: 9999;
+    }
+
+    .modal-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 90%;
+      max-height: 90%;
+      outline: none;
+    }
+
+    .modal-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(255,255,255,0.8);
+      color: #333;
+      font-size: 24px;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    #prev-image {
+      left: 10px;
+    }
+
+    #next-image {
+      right: 10px;
+    }
+
+    #fullscreen-image {
+      max-width: 100%;
+      max-height: 80vh;
+      display: block;
+      margin: auto;
+    }
+
+  </style>
 
 </head>
 <body>
@@ -240,40 +310,104 @@
   <p>Лазерная гравировка и резка фанеры. Стильно. Точно. Быстро.</p>
 </header>
 
+<nav aria-label="Главное меню сайта">
+  <ul>
+    <li><a href="#services" tabindex="0">Услуги</a></li>
+    <li><a href="#portfolio" tabindex="0">Примеры работ</a></li>
+    <li><a href="#order" tabindex="0">Оформить заказ</a></li>
+  </ul>
+</nav>
+
 <main>
-  <section>
+  <section id="services" tabindex="-1">
     <h2 style="text-align:center; margin-bottom: 30px;">Наши услуги</h2>
     <div class="services">
-      <div class="service"><h3>Гравировка</h3><p>Нанесение на фанеру, кожу, стекло, металл.</p></div>
-      <div class="service"><h3>Лазерная резка</h3><p>Точная вырезка деталей любой сложности.</p></div>
-      <div class="service"><h3>Индивидуальные проекты</h3><p>Подарки, декор, клавиатурные раскладки.</p></div>
+      <article class="service" tabindex="0">
+        <h3>Гравировка</h3>
+        <p>Нанесение на фанеру, кожу, стекло, металл.</p>
+      </article>
+      <article class="service" tabindex="0">
+        <h3>Лазерная резка</h3>
+        <p>Точная вырезка деталей любой сложности.</p>
+      </article>
+      <article class="service" tabindex="0">
+        <h3>Индивидуальные проекты</h3>
+        <p>Подарки, декор, клавиатурные раскладки.</p>
+      </article>
     </div>
   </section>
 
-  <section>
+  <section id="portfolio" tabindex="-1">
     <h2 style="text-align:center; margin-bottom: 30px;">Примеры работ</h2>
     <div class="gallery">
-      <div class="gallery-container" id="galleryContainer">
-        <div class="gallery-item"><figure><img src="images/grav1.jpg" alt="Сувениры"><figcaption>Сувениры</figcaption></figure></div>
-        <div class="gallery-item"><figure><img src="images/grav2.jpg" alt="Таблички"><figcaption>Таблички</figcaption></figure></div>
-        <div class="gallery-item"><figure><img src="images/grav3.jpg" alt="Медали"><figcaption>Медали</figcaption></figure></div>
-        <div class="gallery-item"><figure><img src="images/grav4.jpg" alt="Подставки"><figcaption>Подставки</figcaption></figure></div>
-        <div class="gallery-item"><figure><img src="images/grav5.jpg" alt="Гравировка по фото"><figcaption>Гравировка по фото</figcaption></figure></div>
-        <div class="gallery-item"><figure><img src="images/grav6.jpg" alt="Подставки из сруба"><figcaption>Подставки из сруба</figcaption></figure></div>
-        <div class="gallery-item"><figure><img src="images/grav7.jpg" alt="Грамоты и дипломы"><figcaption>Грамоты и дипломы</figcaption></figure></div>
-        <div class="gallery-item"><figure><img src="images/grav8.jpg" alt="Гравировка картин"><figcaption>Гравировка картин</figcaption></figure></div>
+      <div class="gallery-container" id="galleryContainer" role="list">
+        <div class="gallery-item" role="listitem" tabindex="0">
+          <figure>
+            <img src="images/grav1.jpg" alt="Сувениры — примеры гравировки" loading="lazy" />
+            <figcaption>Сувениры</figcaption>
+          </figure>
+        </div>
+        <div class="gallery-item" role="listitem" tabindex="0">
+          <figure>
+            <img src="images/grav2.jpg" alt="Таблички с лазерной гравировкой" loading="lazy" />
+            <figcaption>Таблички</figcaption>
+          </figure>
+        </div>
+        <div class="gallery-item" role="listitem" tabindex="0">
+          <figure>
+            <img src="images/grav3.jpg" alt="Медали с гравировкой" loading="lazy" />
+            <figcaption>Медали</figcaption>
+          </figure>
+        </div>
+        <div class="gallery-item" role="listitem" tabindex="0">
+          <figure>
+            <img src="images/grav4.jpg" alt="Подставки с лазерной резкой" loading="lazy" />
+            <figcaption>Подставки</figcaption>
+          </figure>
+        </div>
+        <div class="gallery-item" role="listitem" tabindex="0">
+          <figure>
+            <img src="images/grav5.jpg" alt="Гравировка по фото" loading="lazy" />
+            <figcaption>Гравировка по фото</figcaption>
+          </figure>
+        </div>
+        <div class="gallery-item" role="listitem" tabindex="0">
+          <figure>
+            <img src="images/grav6.jpg" alt="Подставки из сруба" loading="lazy" />
+            <figcaption>Подставки из сруба</figcaption>
+          </figure>
+        </div>
+        <div class="gallery-item" role="listitem" tabindex="0">
+          <figure>
+            <img src="images/grav7.jpg" alt="Грамоты и дипломы с лазерной гравировкой" loading="lazy" />
+            <figcaption>Грамоты и дипломы</figcaption>
+          </figure>
+        </div>
+        <div class="gallery-item" role="listitem" tabindex="0">
+          <figure>
+            <img src="images/grav8.jpg" alt="Картины с лазерной гравировкой" loading="lazy" />
+            <figcaption>Гравировка картин</figcaption>
+          </figure>
+        </div>
       </div>
     </div>
   </section>
 
-  <section>
+  <section id="order" tabindex="-1">
     <h2 style="text-align:center; margin-bottom: 30px;">Оформить заказ</h2>
-    <form id="orderForm" action="https://formspree.io/f/mblyjgyz" method="POST">
-      <label>Ваше имя: <input type="text" name="name" required /></label>
-      <label>Email для связи: <input type="email" name="email" required /></label>
-      <label>Описание заказа: <textarea name="message" rows="4" required></textarea></label>
+    <form id="orderForm" action="https://formspree.io/f/mblyjgyz" method="POST" novalidate>
+      <label for="name">Ваше имя:</label>
+      <input type="text" id="name" name="name" required aria-required="true" />
+
+      <label for="email">Email для связи:</label>
+      <input type="email" id="email" name="email" required aria-required="true" />
+
+      <label for="message">Описание заказа:</label>
+      <textarea id="message" name="message" rows="4" required aria-required="true"></textarea>
+
       <input type="hidden" name="_next" value="https://seregasohigh.github.io/laserbit/thank-you.html" />
-      <button type="submit">Отправить запрос</button>
+      <button type="submit" aria-label="Отправить запрос на оформление заказа">Отправить запрос</button>
+      <div id="formMessage" role="alert" aria-live="polite"></div>
     </form>
   </section>
 </main>
@@ -281,14 +415,14 @@
 <footer>
   <p>&copy; 2025 LaserBit. Все права защищены.</p>
   <p>Телефон: <a href="tel:+79778740953">+7 (977) 874-09-53</a></p>
-  <p>Telegram: <a href="https://t.me/Bloodzilla" target="_blank">@Bloodzilla</a></p>
+  <p>Telegram: <a href="https://t.me/Bloodzilla" target="_blank" rel="noopener noreferrer">@Bloodzilla</a></p>
 </footer>
 
 <!-- Модальное окно -->
-<div id="fullscreen-modal" class="modal">
-  <button id="prev-image" class="modal-arrow">&lt;</button>
-  <button id="next-image" class="modal-arrow">&gt;</button>
-  <div class="modal-content">
+<div id="fullscreen-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1">
+  <button id="prev-image" class="modal-arrow" aria-label="Предыдущее изображение" tabindex="0">&lt;</button>
+  <button id="next-image" class="modal-arrow" aria-label="Следующее изображение" tabindex="0">&gt;</button>
+  <div class="modal-content" tabindex="0">
     <img id="fullscreen-image" src="" alt="Фото в полный экран">
   </div>
 </div>
@@ -299,18 +433,20 @@
   const modalImage = document.getElementById('fullscreen-image');
   const prevButton = document.getElementById('prev-image');
   const nextButton = document.getElementById('next-image');
-  const container = document.getElementById('galleryContainer');
   let currentIndex = 0;
 
   function openModal(index) {
     currentIndex = index;
     modalImage.src = galleryItems[currentIndex].src;
     modal.style.display = 'block';
+    modal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
+    modal.focus();
   }
 
   function closeModal() {
     modal.style.display = 'none';
+    modal.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
   }
 
@@ -321,16 +457,44 @@
 
   galleryItems.forEach((img, index) => {
     img.addEventListener('click', () => openModal(index));
+    img.addEventListener('keydown', (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        openModal(index);
+      }
+    });
   });
 
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.style.display === 'block') {
-      closeModal();
+    if (modal.style.display === 'block') {
+      if (e.key === 'Escape') {
+        closeModal();
+      }
+      else if (e.key === 'ArrowLeft') {
+        showImage(currentIndex - 1);
+      }
+      else if (e.key === 'ArrowRight') {
+        showImage(currentIndex + 1);
+      }
     }
   });
 
   prevButton.addEventListener('click', () => showImage(currentIndex - 1));
   nextButton.addEventListener('click', () => showImage(currentIndex + 1));
+
+  // Добавим доступность для кнопок стрелок по клавишам
+  prevButton.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      showImage(currentIndex - 1);
+    }
+  });
+  nextButton.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      showImage(currentIndex + 1);
+    }
+  });
 
   modal.addEventListener('click', (e) => {
     if (e.target === modal) closeModal();
@@ -341,6 +505,47 @@
       showImage(currentIndex + 1);
     }
   }, 5000);
+
+  // Обработка формы с сообщениями пользователю
+  const form = document.getElementById('orderForm');
+  const formMessage = document.getElementById('formMessage');
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+
+    if (!form.checkValidity()) {
+      formMessage.textContent = 'Пожалуйста, заполните все поля корректно.';
+      formMessage.style.color = 'red';
+      return;
+    }
+
+    formMessage.textContent = 'Отправка…';
+    formMessage.style.color = '#fff';
+
+    fetch(form.action, {
+      method: form.method,
+      headers: { 'Accept': 'application/json' },
+      body: new FormData(form),
+    }).then(response => {
+      if (response.ok) {
+        formMessage.textContent = 'Спасибо! Ваш запрос отправлен.';
+        formMessage.style.color = '#27ae60';
+        form.reset();
+      } else {
+        response.json().then(data => {
+          if (data.errors) {
+            formMessage.textContent = data.errors.map(e => e.message).join(", ");
+          } else {
+            formMessage.textContent = 'Произошла ошибка при отправке.';
+          }
+          formMessage.style.color = 'red';
+        });
+      }
+    }).catch(() => {
+      formMessage.textContent = 'Ошибка сети. Попробуйте позже.';
+      formMessage.style.color = 'red';
+    });
+  });
 </script>
 
 </body>
