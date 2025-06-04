@@ -151,7 +151,7 @@ form button:focus {
 }
 
 footer {
-  background: rgba(44, 62, 80, 0.9);
+  background: rgba(44, 62, 80, 0.4);
   color: white;
   text-align: center;
   padding: 20px;
