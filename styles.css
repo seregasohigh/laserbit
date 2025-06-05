@@ -15,7 +15,7 @@ body {
 }
 
 header {
-  background: rgba(44, 62, 80, 0.4);
+  background: rgba(44, 62, 80, 0.2);
   color: white;
   padding: 40px 20px;
   text-align: center;
@@ -151,7 +151,7 @@ form button:focus {
 }
 
 footer {
-  background: rgba(44, 62, 80, 0.4);
+  background: rgba(44, 62, 80, 0.2);
   color: white;
   text-align: center;
   padding: 20px;
