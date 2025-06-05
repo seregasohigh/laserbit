@@ -4,6 +4,28 @@
   box-sizing: border-box;
 }
 
+.contact-top-right {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  text-align: right;
+  z-index: 1000;
+  font-size: 14px;
+  background-color: rgba(0, 0, 0, 0.4); /* прозрачный фон */
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.contact-top-right p {
+  margin: 5px 0;
+}
+
+.contact-top-right img {
+  width: 20px;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
